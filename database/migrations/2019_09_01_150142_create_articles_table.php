@@ -17,10 +17,10 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
             $table->char('main_title', 100);
             $table->char('secondary_title', 100)->nullable();
-            $table->text('content');
-            $table->text('img');
+            $table->char('content', 255);
+            $table->char('img', 255);
             $table->bigInteger('author_id')->unsigned();
-            $table->foreign('author_id')->references('id')->on('authors');
+            $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
             $table->timestamps();
         });
     }

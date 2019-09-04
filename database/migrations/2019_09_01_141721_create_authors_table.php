@@ -17,10 +17,10 @@ class CreateAuthorsTable extends Migration
             $table->bigIncrements('id')->unsigned();
             $table->char('name', 100);
             $table->char('email', 50);
-            $table->text('github')->nullable();
-            $table->text('twitter')->nullable();
+            $table->char('github', 100)->nullable();
+            $table->char('twitter', 100)->nullable();
             $table->char('location', 150);
-            $table->text('latest_article_published')->nullable();
+            $table->char('latest_article_published', 100)->nullable();
             $table->timestamps();
         });
     }

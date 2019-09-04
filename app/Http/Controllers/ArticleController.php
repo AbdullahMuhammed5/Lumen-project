@@ -57,7 +57,7 @@ class ArticleController extends Controller
         $this->validate($request, [
             'main_title' => 'required|max:255',
             'content' => 'required',
-            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'img' => 'required|string'
         ]);
 
         $imageName = time().'_'.$request['img']->getClientOriginalName();
@@ -98,11 +98,6 @@ class ArticleController extends Controller
          if (file_exists($imgPath)) {
              File::delete('/public/images/'.$imgPath);
          }
-        $article->delete();
-        return response([
-                'status' => 200,
-                'message' => 'Deleted!'
-            ], 200
-        );
+        return $article->delete();
     }
 }
