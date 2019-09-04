@@ -22,6 +22,7 @@ class CreateArticlesTable extends Migration
             $table->bigInteger('author_id')->unsigned();
             $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

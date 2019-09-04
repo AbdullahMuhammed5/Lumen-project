@@ -22,7 +22,7 @@ $router->get('/articles/{id}', 'ArticleController@show');
 $router->post('/articles', 'ArticleController@store');
 //$router->get('/articles/{id}/edit', 'ArticleController@edit');
 $router->put('/articles/{id}', 'ArticleController@update');
-$router->delete('/articles/{id}', 'ArticleController@destroy');
+$router->delete('/articles/{id}', 'ArticleController@softDelete');
 
 $router->get('/authors', 'AuthorController@index');
 $router->get('/authors/{id}', 'AuthorController@show');
@@ -30,6 +30,6 @@ $router->get('/authors/{id}', 'AuthorController@show');
 $router->post('/authors', 'AuthorController@store');
 //$router->get('/authors/{id}/edit', 'AuthorController@edit');
 $router->put('/authors/{id}', 'AuthorController@update');
-$router->delete('/authors/{id}', 'AuthorController@destroy');
+$router->delete('/authors/{id}', 'AuthorController@softDelete');
 
 

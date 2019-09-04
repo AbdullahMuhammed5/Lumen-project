@@ -22,6 +22,7 @@ class CreateAuthorsTable extends Migration
             $table->char('location', 150);
             $table->char('latest_article_published', 100)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

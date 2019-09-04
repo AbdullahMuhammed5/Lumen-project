@@ -11,9 +11,9 @@ $factory->define(Article::class, function (Faker $faker) {
         'main_title' => $faker->sentence($nbWords = 3),
         'secondary_title' => $faker->sentence($nbWords = 3),
         'content' => $faker->sentence(),
-        'img' => $faker->image(),
+        'img' => $faker->image,
 //        'author_id' => $faker->numberBetween($min = 1, $max = 5)
-        'author_id' => \App\Author::all()->random()->id
+        'author_id' => App\Author::all()->random()->id
 //        'author_id' => $author_id
     ];
 });

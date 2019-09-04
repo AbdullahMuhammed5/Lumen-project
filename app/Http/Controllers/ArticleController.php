@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Transformers\ArticleTransformer;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
@@ -57,7 +58,7 @@ class ArticleController extends Controller
         $this->validate($request, [
             'main_title' => 'required|max:255',
             'content' => 'required',
-            'img' => 'required|string'
+            'img' => 'required||image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         $imageName = time().'_'.$request['img']->getClientOriginalName();
@@ -91,13 +92,11 @@ class ArticleController extends Controller
         return $article->toArray();
     }
 
-    public function destroy($id)
+    public function softDelete($id)
     {
-        $article = Article::findOrFail($id);
-        $imgPath = $article['img'];
-         if (file_exists($imgPath)) {
-             File::delete('/public/images/'.$imgPath);
-         }
-        return $article->delete();
+        Article::findOrFail($id)->delete();
+        return response([
+            'status'=>200
+        ], 200);
     }
 }

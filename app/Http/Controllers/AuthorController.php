@@ -77,13 +77,11 @@ class AuthorController extends Controller
         return $author->toArray();
     }
 
-    public function destroy($id)
+    public function softDelete($id)
     {
         Author::findOrFail($id)->delete();
         return response([
-            'status' => 200,
-            'message' => 'Deleted!'
-        ], 200
-        );
+            'status'=>200
+        ], 200);
     }
 }
