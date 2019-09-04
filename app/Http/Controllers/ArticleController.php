@@ -57,15 +57,18 @@ class ArticleController extends Controller
         $this->validate($request, [
             'main_title' => 'required|max:255',
             'content' => 'required',
-            'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
-        if($request['img']){
-            $imageName = time().'_'.$request['img']->getClientOriginalName();
-            $request['img']->move(('images'), $imageName);
-            return Article::create($request->except('img') + ['img' => $imageName]);
-        } else{
-            return Article::create($request->all());
-        }
+
+        $imageName = time().'_'.$request['img']->getClientOriginalName();
+        $request['img']->move(('images'), $imageName);
+
+        $article = Article::create($request->except('img') + ['img' => $imageName]);
+        $article = new Item($article, $this->articleTransformer);
+        $article = $this->fractal->createData($article);
+
+        return $article->toArray();
+
     }
 
     public function update(Request $request, $id)
@@ -73,28 +76,29 @@ class ArticleController extends Controller
         $this->validate($request, [
             'main_title' => 'required|max:255',
             'content' => 'required',
-            'img' => 'required'
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
-        $article = Article::findOrFail($id);
-        if($request['img']){
-            $imageName = time().'.'.$request['img']->getClientOriginalExtension();
-            $request['img']->move(('public/images'), $imageName);
-        }
-        $request->img = $imageName;
-        $article->update($request->all());
 
-        return $article;
+        $article = Article::findOrFail($id);
+
+        $imageName = time().'_'.$request['img']->getClientOriginalName();
+        $request['img']->move(('images'), $imageName);
+
+        $article->update($request->except('img') + ['img' => $imageName]);
+        $article = new Item($article, $this->articleTransformer);
+        $article = $this->fractal->createData($article);
+
+        return $article->toArray();
     }
 
     public function destroy($id)
     {
         $article = Article::findOrFail($id);
-        $imgPath = pathinfo()/$article['img'];
-         if (file_exists($image_path)) {
-             File::delete($image_path);
+        $imgPath = $article['img'];
+         if (file_exists($imgPath)) {
+             File::delete('/public/images/'.$imgPath);
          }
-        echo $article->img;
-//        $article->delete();
+        $article->delete();
         return response([
                 'status' => 200,
                 'message' => 'Deleted!'

@@ -30,8 +30,8 @@ class AuthorController extends Controller
     {
         $authors = Author::all();
 
-        $authors = new Collection($authors, $this->authorTransformer); // Create a resource collection transformer
-        $authors = $this->fractal->createData($authors); // Transform data
+        $authors = new Collection($authors, $this->authorTransformer);
+        $authors = $this->fractal->createData($authors);
 
         return $authors->toArray();
     }
@@ -53,7 +53,12 @@ class AuthorController extends Controller
             'email' => 'required|email',
             'location' => 'required',
         ]);
-        return Author::create($request->all());
+
+        $author = Author::create($request->all());
+        $author = new Item($author, $this->authorTransformer);
+        $author = $this->fractal->createData($author);
+
+        return $author->toArray();
     }
 
     public function update(Request $request, $id)
@@ -63,15 +68,17 @@ class AuthorController extends Controller
             'email' => 'required|email',
             'location' => 'required'
         ]);
-        $article = Author::findOrFail($id);
-        $article->update($request->all());
 
-        return $article;
+        $author = Author::findOrFail($id);
+        $author->update($request->all());
+        $author = new Item($author, $this->authorTransformer);
+        $author = $this->fractal->createData($author);
+
+        return $author->toArray();
     }
 
     public function destroy($id)
     {
-
         Author::findOrFail($id)->delete();
         return response([
             'status' => 200,
