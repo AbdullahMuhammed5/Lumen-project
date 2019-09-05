@@ -33,3 +33,13 @@ $router->put('/authors/{id}', 'AuthorController@update');
 $router->delete('/authors/{id}', 'AuthorController@softDelete');
 
 
+$router->post('/auth/login', 'AuthController@postLogin');
+
+$router->group(['middleware' => 'auth:api'], function($router)
+{
+    $router->get('/test', function() {
+        return response()->json([
+            'message' => 'Hello Lumen!!',
+        ]);
+    });
+});

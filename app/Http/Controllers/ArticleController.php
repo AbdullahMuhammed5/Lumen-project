@@ -6,11 +6,17 @@ use App\Article;
 use App\Transformers\ArticleTransformer;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
 
 
+/**
+ * @group Author management
+ *
+ * APIs for managing authors
+ */
 class ArticleController extends Controller
 {
     /**
@@ -28,11 +34,16 @@ class ArticleController extends Controller
         $this->fractal = $fractal;
         $this->articleTransformer = $articleTransformer;
     }
-
-    /*
+    /**
+     * List All Articles
      *
-     * @return \Illuminate\Http\Response
-     * */
+     * @queryParam id required The id of the author.
+     *
+     * @transformercollection \App\Transformers\ArticleTransformer
+     * @transformerModel \App\Article
+     *
+     * @return array
+     */
     public function index()
     {
         $articles = Article::all();
@@ -43,6 +54,16 @@ class ArticleController extends Controller
         return $articles->toArray();
     }
 
+    /**
+     * Show an article
+     *
+     * @queryParam id required The id of the article.
+     *
+     * @transformercollection \App\Transformers\ArticleTransformer
+     * @transformerModel \App\Article
+     * @param $id
+     * @return array
+     */
     public function show($id)
     {
         $article = Article::findOrFail($id);
@@ -52,7 +73,24 @@ class ArticleController extends Controller
 
         return $article->toArray();
     }
-
+    /**
+     * Create a article
+     *
+     * @bodyParam main_title string required The title of the post.
+     * @bodyParam secondary_title string Not required The title of the post.
+     * @bodyParam content string The content of post to create.
+     * @bodyParam author_id int the ID of the author
+     * @bodyParam img image This is required.
+     *
+     * @queryParam  \Illuminate\Http\Request  $request
+     *
+     * @transformercollection \App\Transformers\ArticleTransformer
+     * @transformerModel \App\Article
+     * @param Request $request
+     * @return array
+     * @throws ValidationException
+     *
+     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -72,6 +110,25 @@ class ArticleController extends Controller
 
     }
 
+    /**
+     * Update a article
+     *
+     * @bodyParam main_title string required The title of the post.
+     * @bodyParam secondary_title string Not required The title of the post.
+     * @bodyParam content string The content of post to create.
+     * @bodyParam author_id int the ID of the author
+     * @bodyParam img image This is required.
+     *
+     * @queryParam  \Illuminate\Http\Request  $request
+     * @queryParam id int
+     *
+     * @transformercollection \App\Transformers\ArticleTransformer
+     * @transformerModel \App\Article
+     * @param Request $request
+     * @param $id
+     * @return array
+     * @throws ValidationException
+     */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -91,7 +148,11 @@ class ArticleController extends Controller
 
         return $article->toArray();
     }
-
+    /**
+     * @response {
+     *  "status": 200,
+     * }
+     */
     public function softDelete($id)
     {
         Article::findOrFail($id)->delete();

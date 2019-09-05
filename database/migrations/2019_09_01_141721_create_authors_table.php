@@ -17,6 +17,7 @@ class CreateAuthorsTable extends Migration
             $table->bigIncrements('id')->unsigned();
             $table->char('name', 100);
             $table->char('email', 50);
+            $table->char('password', 150);
             $table->char('github', 100)->nullable();
             $table->char('twitter', 100)->nullable();
             $table->char('location', 150);

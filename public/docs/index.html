@@ -1,0 +1,943 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/all.js"></script>
+
+
+          <script>
+        $(function() {
+            setupLanguages(["bash","javascript"]);
+        });
+      </script>
+      </head>
+
+  <body class="">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+        <img src="images/logo.png" />
+                    <div class="lang-selector">
+                                  <a href="#" data-language-name="bash">bash</a>
+                                  <a href="#" data-language-name="javascript">javascript</a>
+                            </div>
+                            <div class="search">
+              <input type="text" class="search" id="input-search" placeholder="Search">
+            </div>
+            <ul class="search-results"></ul>
+              <div id="toc">
+      </div>
+                    <ul class="toc-footer">
+                                  <li><a href='http://github.com/mpociot/documentarian'>Documentation Powered by Documentarian</a></li>
+                            </ul>
+            </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+          <!-- START_INFO -->
+<h1>Info</h1>
+<p>Welcome to the generated API reference.
+<a href="http://localhost/docs/collection.json">Get Postman Collection</a></p>
+<!-- END_INFO -->
+<h1>Author management</h1>
+<p>APIs for managing authors</p>
+<!-- START_8b794a0f08ddd4d69013d2fd7726b7e2 -->
+<h2>List All Articles</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "/articles?id=maxime" </code></pre>
+<pre><code class="language-javascript">const url = new URL("/articles");
+
+    let params = {
+            "id": "maxime",
+        };
+    Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": [
+        {
+            "id": 1,
+            "main_title": "Quo quibusdam ut.",
+            "secondary_title": "Ex harum molestiae.",
+            "content": "In maxime incidunt quia est quo occaecati ex quibusdam.",
+            "image": "\/tmp\/5a07a2d7a5b988fc89529fef358853c1.jpg",
+            "author": "Jacinthe Abernathy"
+        },
+        {
+            "id": 1,
+            "main_title": "Quo quibusdam ut.",
+            "secondary_title": "Ex harum molestiae.",
+            "content": "In maxime incidunt quia est quo occaecati ex quibusdam.",
+            "image": "\/tmp\/5a07a2d7a5b988fc89529fef358853c1.jpg",
+            "author": "Jacinthe Abernathy"
+        }
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET /articles</code></p>
+<h4>Query Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>required</td>
+<td>The id of the author.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_8b794a0f08ddd4d69013d2fd7726b7e2 -->
+<!-- START_5ba7e5f6e42a2b98925186bef3726834 -->
+<h2>Show an article</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "/articles/1?id=nulla" </code></pre>
+<pre><code class="language-javascript">const url = new URL("/articles/1");
+
+    let params = {
+            "id": "nulla",
+        };
+    Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": [
+        {
+            "id": 1,
+            "main_title": "Quo quibusdam ut.",
+            "secondary_title": "Ex harum molestiae.",
+            "content": "In maxime incidunt quia est quo occaecati ex quibusdam.",
+            "image": "\/tmp\/5a07a2d7a5b988fc89529fef358853c1.jpg",
+            "author": "Jacinthe Abernathy"
+        },
+        {
+            "id": 1,
+            "main_title": "Quo quibusdam ut.",
+            "secondary_title": "Ex harum molestiae.",
+            "content": "In maxime incidunt quia est quo occaecati ex quibusdam.",
+            "image": "\/tmp\/5a07a2d7a5b988fc89529fef358853c1.jpg",
+            "author": "Jacinthe Abernathy"
+        }
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET /articles/{id}</code></p>
+<h4>Query Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>required</td>
+<td>The id of the article.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_5ba7e5f6e42a2b98925186bef3726834 -->
+<!-- START_24a000b518b36afd387d5e167fde2c1a -->
+<h2>Create a article</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "/articles?%5CIlluminate%5CHttp%5CRequest=at" \
+    -H "Content-Type: application/json" \
+    -d '{"main_title":"voluptatum","secondary_title":"et","content":"nobis","author_id":15,"img":"eos"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL("/articles");
+
+    let params = {
+            "\Illuminate\Http\Request": "at",
+        };
+    Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "main_title": "voluptatum",
+    "secondary_title": "et",
+    "content": "nobis",
+    "author_id": 15,
+    "img": "eos"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": [
+        {
+            "id": 1,
+            "main_title": "Quo quibusdam ut.",
+            "secondary_title": "Ex harum molestiae.",
+            "content": "In maxime incidunt quia est quo occaecati ex quibusdam.",
+            "image": "\/tmp\/5a07a2d7a5b988fc89529fef358853c1.jpg",
+            "author": "Jacinthe Abernathy"
+        },
+        {
+            "id": 1,
+            "main_title": "Quo quibusdam ut.",
+            "secondary_title": "Ex harum molestiae.",
+            "content": "In maxime incidunt quia est quo occaecati ex quibusdam.",
+            "image": "\/tmp\/5a07a2d7a5b988fc89529fef358853c1.jpg",
+            "author": "Jacinthe Abernathy"
+        }
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST /articles</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>main_title</td>
+<td>string</td>
+<td>required</td>
+<td>The title of the post.</td>
+</tr>
+<tr>
+<td>secondary_title</td>
+<td>string</td>
+<td>optional</td>
+<td>Not required The title of the post.</td>
+</tr>
+<tr>
+<td>content</td>
+<td>string</td>
+<td>optional</td>
+<td>The content of post to create.</td>
+</tr>
+<tr>
+<td>author_id</td>
+<td>integer</td>
+<td>optional</td>
+<td>the ID of the author</td>
+</tr>
+<tr>
+<td>img</td>
+<td>image</td>
+<td>optional</td>
+<td>This is required.</td>
+</tr>
+</tbody>
+</table>
+<h4>Query Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\Illuminate\Http\Request</td>
+<td>optional</td>
+<td>$request</td>
+</tr>
+</tbody>
+</table>
+<!-- END_24a000b518b36afd387d5e167fde2c1a -->
+<!-- START_b4d3fad9577b23892c71fb7cf0c48313 -->
+<h2>Update a article</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT "/articles/1?%5CIlluminate%5CHttp%5CRequest=architecto&amp;id=ullam" \
+    -H "Content-Type: application/json" \
+    -d '{"main_title":"omnis","secondary_title":"fuga","content":"fuga","author_id":14,"img":"eaque"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL("/articles/1");
+
+    let params = {
+            "\Illuminate\Http\Request": "architecto",
+            "id": "ullam",
+        };
+    Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "main_title": "omnis",
+    "secondary_title": "fuga",
+    "content": "fuga",
+    "author_id": 14,
+    "img": "eaque"
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": [
+        {
+            "id": 1,
+            "main_title": "Quo quibusdam ut.",
+            "secondary_title": "Ex harum molestiae.",
+            "content": "In maxime incidunt quia est quo occaecati ex quibusdam.",
+            "image": "\/tmp\/5a07a2d7a5b988fc89529fef358853c1.jpg",
+            "author": "Jacinthe Abernathy"
+        },
+        {
+            "id": 1,
+            "main_title": "Quo quibusdam ut.",
+            "secondary_title": "Ex harum molestiae.",
+            "content": "In maxime incidunt quia est quo occaecati ex quibusdam.",
+            "image": "\/tmp\/5a07a2d7a5b988fc89529fef358853c1.jpg",
+            "author": "Jacinthe Abernathy"
+        }
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT /articles/{id}</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>main_title</td>
+<td>string</td>
+<td>required</td>
+<td>The title of the post.</td>
+</tr>
+<tr>
+<td>secondary_title</td>
+<td>string</td>
+<td>optional</td>
+<td>Not required The title of the post.</td>
+</tr>
+<tr>
+<td>content</td>
+<td>string</td>
+<td>optional</td>
+<td>The content of post to create.</td>
+</tr>
+<tr>
+<td>author_id</td>
+<td>integer</td>
+<td>optional</td>
+<td>the ID of the author</td>
+</tr>
+<tr>
+<td>img</td>
+<td>image</td>
+<td>optional</td>
+<td>This is required.</td>
+</tr>
+</tbody>
+</table>
+<h4>Query Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\Illuminate\Http\Request</td>
+<td>optional</td>
+<td>$request</td>
+</tr>
+<tr>
+<td>id</td>
+<td>optional</td>
+<td>int</td>
+</tr>
+</tbody>
+</table>
+<!-- END_b4d3fad9577b23892c71fb7cf0c48313 -->
+<!-- START_639be51dc3c703b743ab948939ca3abd -->
+<h2>/articles/{id}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE "/articles/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("/articles/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE /articles/{id}</code></p>
+<!-- END_639be51dc3c703b743ab948939ca3abd -->
+<h1>general</h1>
+<!-- START_cf1251112a611b51ba88e395f6bd15fe -->
+<h2>List All Author</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "/authors?id=ut" </code></pre>
+<pre><code class="language-javascript">const url = new URL("/authors");
+
+    let params = {
+            "id": "ut",
+        };
+    Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": [
+        {
+            "id": 1,
+            "name": "Lilly Shanahan",
+            "email": "bogisich.giuseppe@bergnaum.com",
+            "github": "http:\/\/www.okeefe.com\/quasi-delectus-assumenda-consequatur-aliquid-ipsam-minima-exercitationem.html",
+            "twitter": "http:\/\/bergstrom.com\/non-in-autem-eaque.html",
+            "location": "30904 Gussie Locks Suite 992",
+            "articles": []
+        },
+        {
+            "id": 1,
+            "name": "Lilly Shanahan",
+            "email": "bogisich.giuseppe@bergnaum.com",
+            "github": "http:\/\/www.okeefe.com\/quasi-delectus-assumenda-consequatur-aliquid-ipsam-minima-exercitationem.html",
+            "twitter": "http:\/\/bergstrom.com\/non-in-autem-eaque.html",
+            "location": "30904 Gussie Locks Suite 992",
+            "articles": []
+        }
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET /authors</code></p>
+<h4>Query Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>required</td>
+<td>The id of the author.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_cf1251112a611b51ba88e395f6bd15fe -->
+<!-- START_e3c21f664c1b89d1f4d38f60a5e80ced -->
+<h2>Show an Author</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET -G "/authors/1?id=ex" </code></pre>
+<pre><code class="language-javascript">const url = new URL("/authors/1");
+
+    let params = {
+            "id": "ex",
+        };
+    Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": [
+        {
+            "id": 1,
+            "name": "Lilly Shanahan",
+            "email": "bogisich.giuseppe@bergnaum.com",
+            "github": "http:\/\/www.okeefe.com\/quasi-delectus-assumenda-consequatur-aliquid-ipsam-minima-exercitationem.html",
+            "twitter": "http:\/\/bergstrom.com\/non-in-autem-eaque.html",
+            "location": "30904 Gussie Locks Suite 992",
+            "articles": []
+        },
+        {
+            "id": 1,
+            "name": "Lilly Shanahan",
+            "email": "bogisich.giuseppe@bergnaum.com",
+            "github": "http:\/\/www.okeefe.com\/quasi-delectus-assumenda-consequatur-aliquid-ipsam-minima-exercitationem.html",
+            "twitter": "http:\/\/bergstrom.com\/non-in-autem-eaque.html",
+            "location": "30904 Gussie Locks Suite 992",
+            "articles": []
+        }
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET /authors/{id}</code></p>
+<h4>Query Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>required</td>
+<td>The id of the author.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_e3c21f664c1b89d1f4d38f60a5e80ced -->
+<!-- START_bfb05bba6bd6e003fd9a428bfb610255 -->
+<h2>Create an Author</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "/authors?%5CIlluminate%5CHttp%5CRequest=fuga&amp;id=et" \
+    -H "Content-Type: application/json" \
+    -d '{"name":"officiis","email":"aut","password":"dolor","github":"quisquam","twitter":"vel","location":"qui","last":"sit"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL("/authors");
+
+    let params = {
+            "\Illuminate\Http\Request": "fuga",
+            "id": "et",
+        };
+    Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "name": "officiis",
+    "email": "aut",
+    "password": "dolor",
+    "github": "quisquam",
+    "twitter": "vel",
+    "location": "qui",
+    "last": "sit"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": [
+        {
+            "id": 1,
+            "name": "Lilly Shanahan",
+            "email": "bogisich.giuseppe@bergnaum.com",
+            "github": "http:\/\/www.okeefe.com\/quasi-delectus-assumenda-consequatur-aliquid-ipsam-minima-exercitationem.html",
+            "twitter": "http:\/\/bergstrom.com\/non-in-autem-eaque.html",
+            "location": "30904 Gussie Locks Suite 992",
+            "articles": []
+        },
+        {
+            "id": 1,
+            "name": "Lilly Shanahan",
+            "email": "bogisich.giuseppe@bergnaum.com",
+            "github": "http:\/\/www.okeefe.com\/quasi-delectus-assumenda-consequatur-aliquid-ipsam-minima-exercitationem.html",
+            "twitter": "http:\/\/bergstrom.com\/non-in-autem-eaque.html",
+            "location": "30904 Gussie Locks Suite 992",
+            "articles": []
+        }
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST /authors</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>required</td>
+<td>The name for the author.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>required</td>
+<td>The email for the author.</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>required</td>
+<td>The password of the author.</td>
+</tr>
+<tr>
+<td>github</td>
+<td>string.</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>twitter</td>
+<td>string.</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>location</td>
+<td>string</td>
+<td>optional</td>
+<td>This is required.</td>
+</tr>
+<tr>
+<td>last</td>
+<td>article</td>
+<td>optional</td>
+<td>published string.</td>
+</tr>
+</tbody>
+</table>
+<h4>Query Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\Illuminate\Http\Request</td>
+<td>optional</td>
+<td>$request</td>
+</tr>
+<tr>
+<td>id</td>
+<td>optional</td>
+<td>int</td>
+</tr>
+</tbody>
+</table>
+<!-- END_bfb05bba6bd6e003fd9a428bfb610255 -->
+<!-- START_ee662c4968ea3eac541cd95370312164 -->
+<h2>Update an Author</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT "/authors/1?%5CIlluminate%5CHttp%5CRequest=ut&amp;id=eum" \
+    -H "Content-Type: application/json" \
+    -d '{"name":"sapiente","email":"occaecati","password":"sed","github":"nemo","twitter":"laboriosam","location":"deleniti","last":"nesciunt"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL("/authors/1");
+
+    let params = {
+            "\Illuminate\Http\Request": "ut",
+            "id": "eum",
+        };
+    Object.keys(params).forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+}
+
+let body = {
+    "name": "sapiente",
+    "email": "occaecati",
+    "password": "sed",
+    "github": "nemo",
+    "twitter": "laboriosam",
+    "location": "deleniti",
+    "last": "nesciunt"
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": [
+        {
+            "id": 1,
+            "name": "Lilly Shanahan",
+            "email": "bogisich.giuseppe@bergnaum.com",
+            "github": "http:\/\/www.okeefe.com\/quasi-delectus-assumenda-consequatur-aliquid-ipsam-minima-exercitationem.html",
+            "twitter": "http:\/\/bergstrom.com\/non-in-autem-eaque.html",
+            "location": "30904 Gussie Locks Suite 992",
+            "articles": []
+        },
+        {
+            "id": 1,
+            "name": "Lilly Shanahan",
+            "email": "bogisich.giuseppe@bergnaum.com",
+            "github": "http:\/\/www.okeefe.com\/quasi-delectus-assumenda-consequatur-aliquid-ipsam-minima-exercitationem.html",
+            "twitter": "http:\/\/bergstrom.com\/non-in-autem-eaque.html",
+            "location": "30904 Gussie Locks Suite 992",
+            "articles": []
+        }
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT /authors/{id}</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>required</td>
+<td>The name for the author.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>required</td>
+<td>The email for the author.</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>required</td>
+<td>The password of the author.</td>
+</tr>
+<tr>
+<td>github</td>
+<td>string.</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>twitter</td>
+<td>string.</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>location</td>
+<td>string</td>
+<td>optional</td>
+<td>This is required.</td>
+</tr>
+<tr>
+<td>last</td>
+<td>article</td>
+<td>optional</td>
+<td>published string.</td>
+</tr>
+</tbody>
+</table>
+<h4>Query Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\Illuminate\Http\Request</td>
+<td>optional</td>
+<td>$request</td>
+</tr>
+<tr>
+<td>id</td>
+<td>optional</td>
+<td>int</td>
+</tr>
+</tbody>
+</table>
+<!-- END_ee662c4968ea3eac541cd95370312164 -->
+<!-- START_c9de86a12209a07185a001b7a6cd90df -->
+<h2>/authors/{id}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE "/authors/1" </code></pre>
+<pre><code class="language-javascript">const url = new URL("/authors/1");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE /authors/{id}</code></p>
+<!-- END_c9de86a12209a07185a001b7a6cd90df -->
+<!-- START_ac6527c96d4b9793a4c77ff1e22a8906 -->
+<h2>/auth/login</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST "/auth/login" </code></pre>
+<pre><code class="language-javascript">const url = new URL("/auth/login");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST /auth/login</code></p>
+<!-- END_ac6527c96d4b9793a4c77ff1e22a8906 -->
+      </div>
+      <div class="dark-box">
+                        <div class="lang-selector">
+                                    <a href="#" data-language-name="bash">bash</a>
+                                    <a href="#" data-language-name="javascript">javascript</a>
+                              </div>
+                </div>
+    </div>
+  </body>
+</html>
