@@ -13,9 +13,9 @@ use League\Fractal\Resource\Item;
 
 
 /**
- * @group Author management
+ * @group Article routes
  *
- * APIs for managing authors
+ * APIs for managing Articles
  */
 class ArticleController extends Controller
 {
@@ -74,7 +74,7 @@ class ArticleController extends Controller
         return $article->toArray();
     }
     /**
-     * Create a article
+     * Create an article
      *
      * @bodyParam main_title string required The title of the post.
      * @bodyParam secondary_title string Not required The title of the post.
@@ -96,9 +96,8 @@ class ArticleController extends Controller
         $this->validate($request, [
             'main_title' => 'required|max:255',
             'content' => 'required',
-            'img' => 'required||image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
-
         $imageName = time().'_'.$request['img']->getClientOriginalName();
         $request['img']->move(('images'), $imageName);
 
@@ -111,7 +110,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * Update a article
+     * Update an article
      *
      * @bodyParam main_title string required The title of the post.
      * @bodyParam secondary_title string Not required The title of the post.
@@ -149,6 +148,8 @@ class ArticleController extends Controller
         return $article->toArray();
     }
     /**
+     * Delete an Article
+     *
      * @response {
      *  "status": 200,
      * }

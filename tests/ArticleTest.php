@@ -3,47 +3,56 @@
 use App\Article;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Lumen\Testing\DatabaseMigrations;
 
 class ArticleTest extends TestCase
 {
-//    use DatabaseMigrations;
+    use DatabaseMigrations;
     /**
      * /articles [GET]
      */
     public function testShouldReturnAllArticles(){
+        factory('App\Author', 5)->create();
+        factory('App\Article', 10)->create();
         $this->get("articles", []);
         $this->seeStatusCode(200);
-   }
+    }
     /**
      * /articles/id [GET]
      */
     public function testShouldReturnArticle(){
-        $this->get("articles/4", []);
+        factory('App\Author')->create();
+        $article = factory('App\Article')->make();
+        $this->get("articles/{$article->id}", []);
         $this->seeStatusCode(200);
     }
     /**
      * /articles [POST]
      */
     public function testShouldCreateArticle(){
-        $parameters = factory('App\Article')->make()->toArray();
-        $parameters['img'] = UploadedFile::fake()->image('avatar.jpg');
-        $this->post("articles", $parameters);
+        factory('App\Author')->create();
+        $article = factory('App\Article')->make()->toArray();
+        $article['img'] = UploadedFile::fake()->image('avatar.jpg');
+        $this->post("articles", $article);
         $this->seeStatusCode(200);
     }
     /**
      * /articles/id [PUT]
      */
     public function testShouldUpdateArticle(){
-        $parameters = factory('App\Article')->raw();
-        $parameters['img'] = UploadedFile::fake()->image('avatar.jpg');
-        $this->put("articles/2", $parameters, []);
+        factory('App\Author')->create();
+        $article = factory('App\Article')->create()->toArray();
+        $article['img'] = UploadedFile::fake()->image('avatar.jpg');
+        $this->put("articles/{$article['id']}", $article);
         $this->seeStatusCode(200);
     }
     /**
      * /articles/id [DELETE]
      */
     public function testShouldDeleteArticle(){
-        $this->delete("articles/3", [], []);
+        factory('App\Author')->create();
+        $article = factory('App\Article')->create();
+        $this->delete("articles/{$article->id}", [], []);
         $this->seeStatusCode(200);
     }
 }

@@ -20,24 +20,24 @@ Welcome to the generated API reference.
 
 <!-- END_INFO -->
 
-#Author management
+#Article routes
 
 
-APIs for managing authors
+APIs for managing Articles
 <!-- START_8b794a0f08ddd4d69013d2fd7726b7e2 -->
 ## List All Articles
 
 > Example request:
 
 ```bash
-curl -X GET -G "/articles?id=maxime" 
+curl -X GET -G "/articles?id=magni" 
 ```
 
 ```javascript
 const url = new URL("/articles");
 
     let params = {
-            "id": "maxime",
+            "id": "magni",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -97,14 +97,14 @@ Parameter | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "/articles/1?id=nulla" 
+curl -X GET -G "/articles/1?id=consequuntur" 
 ```
 
 ```javascript
 const url = new URL("/articles/1");
 
     let params = {
-            "id": "nulla",
+            "id": "consequuntur",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -159,14 +159,14 @@ Parameter | Status | Description
 <!-- END_5ba7e5f6e42a2b98925186bef3726834 -->
 
 <!-- START_24a000b518b36afd387d5e167fde2c1a -->
-## Create a article
+## Create an article
 
 > Example request:
 
 ```bash
-curl -X POST "/articles?%5CIlluminate%5CHttp%5CRequest=at" \
+curl -X POST "/articles?%5CIlluminate%5CHttp%5CRequest=dolore" \
     -H "Content-Type: application/json" \
-    -d '{"main_title":"voluptatum","secondary_title":"et","content":"nobis","author_id":15,"img":"eos"}'
+    -d '{"main_title":"aliquid","secondary_title":"qui","content":"doloribus","author_id":5,"img":"est"}'
 
 ```
 
@@ -174,7 +174,7 @@ curl -X POST "/articles?%5CIlluminate%5CHttp%5CRequest=at" \
 const url = new URL("/articles");
 
     let params = {
-            "\Illuminate\Http\Request": "at",
+            "\Illuminate\Http\Request": "dolore",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -184,11 +184,11 @@ let headers = {
 }
 
 let body = {
-    "main_title": "voluptatum",
-    "secondary_title": "et",
-    "content": "nobis",
-    "author_id": 15,
-    "img": "eos"
+    "main_title": "aliquid",
+    "secondary_title": "qui",
+    "content": "doloribus",
+    "author_id": 5,
+    "img": "est"
 }
 
 fetch(url, {
@@ -247,14 +247,14 @@ Parameter | Status | Description
 <!-- END_24a000b518b36afd387d5e167fde2c1a -->
 
 <!-- START_b4d3fad9577b23892c71fb7cf0c48313 -->
-## Update a article
+## Update an article
 
 > Example request:
 
 ```bash
-curl -X PUT "/articles/1?%5CIlluminate%5CHttp%5CRequest=architecto&id=ullam" \
+curl -X PUT "/articles/1?%5CIlluminate%5CHttp%5CRequest=est&id=consequatur" \
     -H "Content-Type: application/json" \
-    -d '{"main_title":"omnis","secondary_title":"fuga","content":"fuga","author_id":14,"img":"eaque"}'
+    -d '{"main_title":"excepturi","secondary_title":"et","content":"et","author_id":3,"img":"recusandae"}'
 
 ```
 
@@ -262,8 +262,8 @@ curl -X PUT "/articles/1?%5CIlluminate%5CHttp%5CRequest=architecto&id=ullam" \
 const url = new URL("/articles/1");
 
     let params = {
-            "\Illuminate\Http\Request": "architecto",
-            "id": "ullam",
+            "\Illuminate\Http\Request": "est",
+            "id": "consequatur",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -273,11 +273,11 @@ let headers = {
 }
 
 let body = {
-    "main_title": "omnis",
-    "secondary_title": "fuga",
-    "content": "fuga",
-    "author_id": 14,
-    "img": "eaque"
+    "main_title": "excepturi",
+    "secondary_title": "et",
+    "content": "et",
+    "author_id": 3,
+    "img": "recusandae"
 }
 
 fetch(url, {
@@ -337,7 +337,8 @@ Parameter | Status | Description
 <!-- END_b4d3fad9577b23892c71fb7cf0c48313 -->
 
 <!-- START_639be51dc3c703b743ab948939ca3abd -->
-## /articles/{id}
+## Delete an Article
+
 > Example request:
 
 ```bash
@@ -373,23 +374,61 @@ fetch(url, {
 
 <!-- END_639be51dc3c703b743ab948939ca3abd -->
 
-#general
+#Authentication
 
 
-<!-- START_cf1251112a611b51ba88e395f6bd15fe -->
-## List All Author
+APIs for managing Authentication
+<!-- START_ac6527c96d4b9793a4c77ff1e22a8906 -->
+## Login
 
 > Example request:
 
 ```bash
-curl -X GET -G "/authors?id=ut" 
+curl -X POST "/auth/login" 
+```
+
+```javascript
+const url = new URL("/auth/login");
+
+let headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST /auth/login`
+
+
+<!-- END_ac6527c96d4b9793a4c77ff1e22a8906 -->
+
+#Author routes
+
+
+APIs for managing Authors
+<!-- START_cf1251112a611b51ba88e395f6bd15fe -->
+## List All Authors
+
+> Example request:
+
+```bash
+curl -X GET -G "/authors?id=dolores" 
 ```
 
 ```javascript
 const url = new URL("/authors");
 
     let params = {
-            "id": "ut",
+            "id": "dolores",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -413,21 +452,21 @@ fetch(url, {
 {
     "data": [
         {
-            "id": 1,
-            "name": "Lilly Shanahan",
-            "email": "bogisich.giuseppe@bergnaum.com",
-            "github": "http:\/\/www.okeefe.com\/quasi-delectus-assumenda-consequatur-aliquid-ipsam-minima-exercitationem.html",
-            "twitter": "http:\/\/bergstrom.com\/non-in-autem-eaque.html",
-            "location": "30904 Gussie Locks Suite 992",
+            "id": 0,
+            "name": "Dr. Maximilian Pagac PhD",
+            "email": "ohayes@johns.com",
+            "github": "http:\/\/www.hegmann.com\/ut-itaque-qui-vel-laudantium-odio-suscipit",
+            "twitter": "http:\/\/www.mckenzie.com\/voluptatem-ea-sunt-aliquam-voluptatem-odio-non-fugit-autem.html",
+            "location": "534 Parisian Isle",
             "articles": []
         },
         {
-            "id": 1,
-            "name": "Lilly Shanahan",
-            "email": "bogisich.giuseppe@bergnaum.com",
-            "github": "http:\/\/www.okeefe.com\/quasi-delectus-assumenda-consequatur-aliquid-ipsam-minima-exercitationem.html",
-            "twitter": "http:\/\/bergstrom.com\/non-in-autem-eaque.html",
-            "location": "30904 Gussie Locks Suite 992",
+            "id": 0,
+            "name": "Dr. Maximilian Pagac PhD",
+            "email": "ohayes@johns.com",
+            "github": "http:\/\/www.hegmann.com\/ut-itaque-qui-vel-laudantium-odio-suscipit",
+            "twitter": "http:\/\/www.mckenzie.com\/voluptatem-ea-sunt-aliquam-voluptatem-odio-non-fugit-autem.html",
+            "location": "534 Parisian Isle",
             "articles": []
         }
     ]
@@ -451,14 +490,14 @@ Parameter | Status | Description
 > Example request:
 
 ```bash
-curl -X GET -G "/authors/1?id=ex" 
+curl -X GET -G "/authors/1?id=maxime" 
 ```
 
 ```javascript
 const url = new URL("/authors/1");
 
     let params = {
-            "id": "ex",
+            "id": "maxime",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -482,21 +521,21 @@ fetch(url, {
 {
     "data": [
         {
-            "id": 1,
-            "name": "Lilly Shanahan",
-            "email": "bogisich.giuseppe@bergnaum.com",
-            "github": "http:\/\/www.okeefe.com\/quasi-delectus-assumenda-consequatur-aliquid-ipsam-minima-exercitationem.html",
-            "twitter": "http:\/\/bergstrom.com\/non-in-autem-eaque.html",
-            "location": "30904 Gussie Locks Suite 992",
+            "id": 0,
+            "name": "Prof. Isabella Leffler",
+            "email": "rowland14@hotmail.com",
+            "github": "http:\/\/www.gottlieb.org\/ut-est-sit-et.html",
+            "twitter": "http:\/\/www.corwin.com\/",
+            "location": "759 Jerde Lock",
             "articles": []
         },
         {
-            "id": 1,
-            "name": "Lilly Shanahan",
-            "email": "bogisich.giuseppe@bergnaum.com",
-            "github": "http:\/\/www.okeefe.com\/quasi-delectus-assumenda-consequatur-aliquid-ipsam-minima-exercitationem.html",
-            "twitter": "http:\/\/bergstrom.com\/non-in-autem-eaque.html",
-            "location": "30904 Gussie Locks Suite 992",
+            "id": 0,
+            "name": "Prof. Isabella Leffler",
+            "email": "rowland14@hotmail.com",
+            "github": "http:\/\/www.gottlieb.org\/ut-est-sit-et.html",
+            "twitter": "http:\/\/www.corwin.com\/",
+            "location": "759 Jerde Lock",
             "articles": []
         }
     ]
@@ -520,9 +559,9 @@ Parameter | Status | Description
 > Example request:
 
 ```bash
-curl -X POST "/authors?%5CIlluminate%5CHttp%5CRequest=fuga&id=et" \
+curl -X POST "/authors?%5CIlluminate%5CHttp%5CRequest=culpa&id=corporis" \
     -H "Content-Type: application/json" \
-    -d '{"name":"officiis","email":"aut","password":"dolor","github":"quisquam","twitter":"vel","location":"qui","last":"sit"}'
+    -d '{"name":"est","email":"iure","password":"quae","github":"eum","twitter":"officiis","location":"minus","last":"reprehenderit"}'
 
 ```
 
@@ -530,8 +569,8 @@ curl -X POST "/authors?%5CIlluminate%5CHttp%5CRequest=fuga&id=et" \
 const url = new URL("/authors");
 
     let params = {
-            "\Illuminate\Http\Request": "fuga",
-            "id": "et",
+            "\Illuminate\Http\Request": "culpa",
+            "id": "corporis",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -541,13 +580,13 @@ let headers = {
 }
 
 let body = {
-    "name": "officiis",
-    "email": "aut",
-    "password": "dolor",
-    "github": "quisquam",
-    "twitter": "vel",
-    "location": "qui",
-    "last": "sit"
+    "name": "est",
+    "email": "iure",
+    "password": "quae",
+    "github": "eum",
+    "twitter": "officiis",
+    "location": "minus",
+    "last": "reprehenderit"
 }
 
 fetch(url, {
@@ -616,9 +655,9 @@ Parameter | Status | Description
 > Example request:
 
 ```bash
-curl -X PUT "/authors/1?%5CIlluminate%5CHttp%5CRequest=ut&id=eum" \
+curl -X PUT "/authors/1?%5CIlluminate%5CHttp%5CRequest=quidem&id=placeat" \
     -H "Content-Type: application/json" \
-    -d '{"name":"sapiente","email":"occaecati","password":"sed","github":"nemo","twitter":"laboriosam","location":"deleniti","last":"nesciunt"}'
+    -d '{"name":"aut","email":"vero","password":"veritatis","github":"nisi","twitter":"voluptates","location":"tempora","last":"et"}'
 
 ```
 
@@ -626,8 +665,8 @@ curl -X PUT "/authors/1?%5CIlluminate%5CHttp%5CRequest=ut&id=eum" \
 const url = new URL("/authors/1");
 
     let params = {
-            "\Illuminate\Http\Request": "ut",
-            "id": "eum",
+            "\Illuminate\Http\Request": "quidem",
+            "id": "placeat",
         };
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -637,13 +676,13 @@ let headers = {
 }
 
 let body = {
-    "name": "sapiente",
-    "email": "occaecati",
-    "password": "sed",
-    "github": "nemo",
-    "twitter": "laboriosam",
-    "location": "deleniti",
-    "last": "nesciunt"
+    "name": "aut",
+    "email": "vero",
+    "password": "veritatis",
+    "github": "nisi",
+    "twitter": "voluptates",
+    "location": "tempora",
+    "last": "et"
 }
 
 fetch(url, {
@@ -707,7 +746,8 @@ Parameter | Status | Description
 <!-- END_ee662c4968ea3eac541cd95370312164 -->
 
 <!-- START_c9de86a12209a07185a001b7a6cd90df -->
-## /authors/{id}
+## Delete an Author
+
 > Example request:
 
 ```bash
@@ -742,37 +782,5 @@ fetch(url, {
 
 
 <!-- END_c9de86a12209a07185a001b7a6cd90df -->
-
-<!-- START_ac6527c96d4b9793a4c77ff1e22a8906 -->
-## /auth/login
-> Example request:
-
-```bash
-curl -X POST "/auth/login" 
-```
-
-```javascript
-const url = new URL("/auth/login");
-
-let headers = {
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-}
-
-fetch(url, {
-    method: "POST",
-    headers: headers,
-})
-    .then(response => response.json())
-    .then(json => console.log(json));
-```
-
-
-
-### HTTP Request
-`POST /auth/login`
-
-
-<!-- END_ac6527c96d4b9793a4c77ff1e22a8906 -->
 
 

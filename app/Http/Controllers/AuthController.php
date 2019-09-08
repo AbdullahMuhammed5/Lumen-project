@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\JWTAuth;
-
+/**
+ * @group Authentication
+ *
+ * APIs for managing Authentication
+ */
 class AuthController extends Controller
 {
     /**
@@ -17,7 +21,10 @@ class AuthController extends Controller
     {
         $this->jwt = $jwt;
     }
-
+    /**
+     * Login
+     *
+     */
     public function postLogin(Request $request)
     {
         $this->validate($request, [

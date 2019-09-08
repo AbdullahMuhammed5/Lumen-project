@@ -1,11 +1,15 @@
 <?php
 
+use Laravel\Lumen\Testing\DatabaseMigrations;
+
 class AuthorTest extends TestCase
 {
+    use DatabaseMigrations;
     /**
      * /authors [GET]
      */
     public function testShouldReturnAllAuthors(){
+        factory('App\Author', 5)->create();
         $this->get("authors", []);
         $this->seeStatusCode(200);
     }
@@ -13,32 +17,33 @@ class AuthorTest extends TestCase
      * /authors/id [GET]
      */
     public function testShouldReturnAuthor(){
-        $this->get("authors/2", []);
+        $author = factory('App\Author')->create();
+        $this->get("authors/{$author->id}", []);
         $this->seeStatusCode(200);
     }
     /**
      * /authors [POST]
      */
     public function testShouldCreateAuthor(){
-        $parameters = factory('App\Author')->make()->toArray();
-
-        $this->post("authors", $parameters, []);
+        $author = factory('App\Author')->make()->toArray();
+        $author['password'] = app('hash')->make('secret');
+        $this->post("authors", $author);
         $this->seeStatusCode(200);
     }
     /**
      * /authors/id [PUT]
      */
     public function testShouldUpdateAuthor(){
-        $parameters = factory('App\Author')->make()->toArray();
-
-        $this->put("authors/1", $parameters, []);
+        $author = factory('App\Author')->create();
+        $this->put("authors/{$author->id}", $author->toArray(), []);
         $this->seeStatusCode(200);
     }
     /**
      * /authors/id [DELETE]
      */
     public function testShouldDeleteAuthor(){
-        $this->delete("authors/3", [], []);
+        $author = factory('App\Author')->create();
+        $this->delete("authors/{$author->id}", [], []);
         $this->seeStatusCode(200);
     }
 }

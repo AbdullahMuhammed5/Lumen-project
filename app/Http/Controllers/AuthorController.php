@@ -10,7 +10,11 @@ use Illuminate\Validation\ValidationException;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
-
+/**
+ * @group Author routes
+ *
+ * APIs for managing Authors
+ */
 class AuthorController extends Controller
 {
     /**
@@ -29,7 +33,7 @@ class AuthorController extends Controller
         $this->authorTransformer = $authorTransformer;
     }
     /**
-     * List All Author
+     * List All Authors
      *
      * @queryParam id required The id of the author.
      *
@@ -94,7 +98,6 @@ class AuthorController extends Controller
             'password' => 'required',
             'location' => 'required',
         ]);
-
         $author = Author::create($request->all());
 //        $author['password'] = app('hash')->make($request['password']);
         $author['password'] = Hash::make($request['password']);
@@ -142,6 +145,8 @@ class AuthorController extends Controller
         return $author->toArray();
     }
     /**
+     * Delete an Author
+     *
      * @response {
      *  "status": 200,
      * }
